@@ -1,0 +1,54 @@
+.auth-page {
+  min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+.auth-bg { position: relative; overflow: hidden; }
+.auth-bg img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.auth-bg-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(5,30,53,0.8), rgba(10,61,98,0.5));
+}
+.auth-card-wrap {
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 24px; background: var(--white);
+}
+.auth-card { width: 100%; max-width: 440px; }
+.auth-logo {
+  font-family: var(--font-display); font-size: 1.5rem; font-weight: 900;
+  color: var(--primary); display: block; margin-bottom: 28px;
+}
+.auth-card h2 { font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 6px; }
+.auth-sub { color: var(--gray-500); font-size: 0.95rem; margin-bottom: 28px; }
+
+.demo-accounts {
+  background: rgba(10,61,98,0.06); border-radius: var(--radius-sm);
+  padding: 14px 16px; margin-bottom: 24px;
+}
+.demo-accounts p { font-size: 0.82rem; font-weight: 600; color: var(--gray-600); margin-bottom: 10px; }
+.demo-btns { display: flex; gap: 8px; }
+.demo-btn {
+  padding: 6px 14px; border-radius: 99px; font-size: 0.82rem; font-weight: 600;
+  border: 2px solid var(--primary); color: var(--primary); background: var(--white);
+  cursor: pointer; transition: var(--transition);
+}
+.demo-btn:hover { background: var(--primary); color: var(--white); }
+
+.role-selector { display: flex; gap: 12px; }
+.role-option {
+  flex: 1; display: flex; align-items: center; gap: 12px;
+  padding: 14px; border: 2px solid var(--gray-200); border-radius: var(--radius-sm);
+  cursor: pointer; transition: var(--transition);
+}
+.role-option input { display: none; }
+.role-option.selected { border-color: var(--primary); background: rgba(10,61,98,0.04); }
+.role-icon { font-size: 1.5rem; }
+.role-option span strong { display: block; font-size: 0.9rem; color: var(--gray-900); }
+.role-option span small { font-size: 0.78rem; color: var(--gray-500); }
+
+.auth-switch { text-align: center; margin-top: 20px; font-size: 0.9rem; color: var(--gray-600); }
+.auth-switch a { color: var(--primary); font-weight: 700; }
+
+@media (max-width: 768px) {
+  .auth-page { grid-template-columns: 1fr; }
+  .auth-bg { display: none; }
+}

@@ -1,0 +1,57 @@
+.place-card {
+  display: block; background: var(--white);
+  border-radius: var(--radius-md); overflow: hidden;
+  box-shadow: var(--shadow-sm); transition: var(--transition); color: inherit;
+}
+.place-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+.place-img-wrap {
+  position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--gray-100);
+}
+.place-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.place-card:hover .place-img-wrap img { transform: scale(1.06); }
+
+.gem-badge, .featured-badge {
+  position: absolute; top: 12px; left: 12px;
+  padding: 4px 12px; border-radius: 99px;
+  font-size: 0.78rem; font-weight: 700; backdrop-filter: blur(6px);
+}
+.gem-badge { background: rgba(232,168,56,0.9); color: #fff; }
+.featured-badge { background: rgba(10,61,98,0.85); color: #fff; }
+
+.place-region-badge {
+  position: absolute; bottom: 12px; right: 12px;
+  background: rgba(0,0,0,0.6); color: var(--white);
+  padding: 3px 10px; border-radius: 99px;
+  font-size: 0.75rem; font-weight: 600; backdrop-filter: blur(4px);
+}
+
+.place-info { padding: 16px; }
+.place-category {
+  font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;
+  font-weight: 700; color: var(--primary-light); margin-bottom: 6px;
+}
+.place-name {
+  font-size: 1.1rem; font-weight: 700; font-family: var(--font-display);
+  color: var(--gray-900); margin-bottom: 8px;
+}
+.place-desc {
+  font-size: 0.85rem; color: var(--gray-600); line-height: 1.6; margin-bottom: 12px;
+}
+.place-meta {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  font-size: 0.82rem; color: var(--gray-600); margin-bottom: 10px;
+}
+.difficulty {
+  padding: 2px 10px; border-radius: 99px; font-size: 0.75rem; font-weight: 600;
+}
+.difficulty-easy { background: rgba(40,167,69,0.1); color: var(--success); }
+.difficulty-moderate { background: rgba(255,193,7,0.15); color: #856404; }
+.difficulty-difficult { background: rgba(220,53,69,0.1); color: var(--danger); }
+.difficulty-expert { background: rgba(108,52,131,0.1); color: #6c3483; }
+
+.place-activities { display: flex; gap: 6px; flex-wrap: wrap; }
+.activity-tag {
+  font-size: 0.75rem; background: var(--gray-100);
+  color: var(--gray-700); padding: 3px 10px; border-radius: 99px; font-weight: 500;
+}
