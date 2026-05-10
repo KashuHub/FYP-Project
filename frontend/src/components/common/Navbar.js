@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './Navbar.css';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const { user, logout, isAdmin, isHost, wishlistCount } = useAuth();
@@ -27,7 +28,10 @@ const Navbar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleLogout = () => { logout(); navigate('/'); setProfileOpen(false); };
+  const handleLogout = () => { logout(); navigate('/'); setProfileOpen(false); 
+
+    toast.success('Logged out successfully 👋');
+  };
 
   return (
     <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
