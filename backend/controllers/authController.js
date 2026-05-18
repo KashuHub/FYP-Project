@@ -27,7 +27,6 @@ exports.register = async (req, res) => {
 
   // Only allow user/host roles from registration (admin must be set manually)
   const allowedRole = ['user', 'host'].includes(role) ? role : 'user';
-
   const user = await User.create({ name, email, password, role: allowedRole });
   sendTokenResponse(user, 201, res);
 };
@@ -71,7 +70,8 @@ exports.updateProfile = async (req, res) => {
     req.user.id,
     { name, phone, bio, avatar },
     { new: true, runValidators: true }
-  );
+  )
+    .populate('wishlist', 'title images price location rating reviewCount propertyType maxGuests bedrooms amenities');
   res.json({ success: true, user });
 };
 

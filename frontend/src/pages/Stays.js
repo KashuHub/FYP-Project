@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { FiFilter, FiX } from 'react-icons/fi';
+import { FaMountain } from 'react-icons/fa';
 import { useSearchParams } from 'react-router-dom';
 import { propertyAPI } from '../services/api';
 import PropertyCard from '../components/common/PropertyCard';
@@ -81,7 +83,7 @@ const Stays = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="🔍 Search stays..."
+              placeholder="Search stays..."
               value={filters.search}
               onChange={e => updateFilter('search', e.target.value)}
             />
@@ -102,11 +104,11 @@ const Stays = () => {
               className={`btn btn-ghost btn-sm ${showFilters ? 'active' : ''}`}
               onClick={() => setShowFilters(!showFilters)}
             >
-              🔧 Filters {filters.amenities.length > 0 || filters.type || filters.region ? `(active)` : ''}
+              <FiFilter style={{ marginRight: 6 }} /> Filters {filters.amenities.length > 0 || filters.type || filters.region ? `(active)` : ''}
             </button>
             {(filters.region || filters.type || filters.amenities.length > 0 || filters.minPrice) && (
               <button className="btn btn-sm" style={{ background: 'var(--danger)', color: 'white' }} onClick={clearFilters}>
-                ✕ Clear
+                <FiX style={{ marginRight: 6 }} /> Clear
               </button>
             )}
           </div>
@@ -161,7 +163,7 @@ const Stays = () => {
           <div className="spinner-wrapper" style={{ minHeight: 300 }}><div className="spinner"></div></div>
         ) : properties.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-state-icon">🏔</div>
+            <div className="empty-state-icon"><FaMountain /></div>
             <h3>No stays found</h3>
             <p>Try adjusting your filters or search in a different region.</p>
             <button className="btn btn-primary" onClick={clearFilters}>Clear Filters</button>

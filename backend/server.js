@@ -21,7 +21,8 @@ app.use(cors({
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 200,
+  max:200,
+  // max: 1000,
   message: 'Too many requests from this IP, please try again later.'
 });
 app.use('/api/', limiter);
@@ -67,7 +68,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`🚀 Tourista Server running on port ${PORT}`);
   console.log(`📍 Environment: ${process.env.NODE_ENV}`);

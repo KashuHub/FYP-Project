@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { FaHotel, FaHome, FaTree, FaStar, FaHiking, FaTheaterMasks, FaCarSide, FaCampground } from "react-icons/fa";
+import { FiGrid, FiCalendar, FiHeart, FiHome, FiShield, FiLogOut } from "react-icons/fi";
 import './Navbar.css';
 import { toast } from 'react-toastify';
 
@@ -49,30 +52,30 @@ const Navbar = () => {
 
           {/* Stays dropdown */}
           <div className="dropdown" onMouseEnter={() => setStaysOpen(true)} onMouseLeave={() => setStaysOpen(false)}>
-            <NavLink to="/stays" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Stays ▾
+            <NavLink to="/stays" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} style={{display:'flex', alignItems:'center'}}>
+              Stays <RiArrowDropDownLine className="dropdown-icon" />
             </NavLink>
             {staysOpen && (
               <div className="dropdown-menu">
-                <Link to="/stays?type=hotel" className="dropdown-item">🏨 Hotels</Link>
-                <Link to="/stays?type=guesthouse" className="dropdown-item">🏡 Guest Houses</Link>
-                <Link to="/stays?type=cabin" className="dropdown-item">🪵 Cabins</Link>
-                <Link to="/stays?type=resort" className="dropdown-item">✨ Luxury Resorts</Link>
+                <Link to="/stays?type=hotel" className="dropdown-item"><FaHotel style={{ marginRight: 8 }} /> Hotels</Link>
+                <Link to="/stays?type=guesthouse" className="dropdown-item"><FaHome style={{ marginRight: 8 }} /> Guest Houses</Link>
+                <Link to="/stays?type=cabin" className="dropdown-item"><FaTree style={{ marginRight: 8 }} /> Cabins</Link>
+                <Link to="/stays?type=resort" className="dropdown-item"><FaStar style={{ marginRight: 8 }} /> Luxury Resorts</Link>
               </div>
             )}
           </div>
 
           {/* Experiences dropdown */}
           <div className="dropdown" onMouseEnter={() => setExpOpen(true)} onMouseLeave={() => setExpOpen(false)}>
-            <NavLink to="/experiences" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Experiences ▾
+            <NavLink to="/experiences" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} style={{display:'flex', alignItems:'center'}}>
+              Experiences <RiArrowDropDownLine className="dropdown-icon" />
             </NavLink>
             {expOpen && (
               <div className="dropdown-menu">
-                <Link to="/experiences?type=trekking" className="dropdown-item">🥾 Trekking Tours</Link>
-                <Link to="/experiences?type=cultural" className="dropdown-item">🎭 Cultural Tours</Link>
-                <Link to="/experiences?type=jeep-safari" className="dropdown-item">🚙 Jeep Safari</Link>
-                <Link to="/experiences?type=camping" className="dropdown-item">⛺ Camping</Link>
+                <Link to="/experiences?type=trekking" className="dropdown-item"><FaHiking style={{ marginRight: 8 }} /> Trekking Tours</Link>
+                <Link to="/experiences?type=cultural" className="dropdown-item"><FaTheaterMasks style={{ marginRight: 8 }} /> Cultural Tours</Link>
+                <Link to="/experiences?type=jeep-safari" className="dropdown-item"><FaCarSide style={{ marginRight: 8 }} /> Jeep Safari</Link>
+                <Link to="/experiences?type=camping" className="dropdown-item"><FaCampground style={{ marginRight: 8 }} /> Camping</Link>
               </div>
             )}
           </div>
@@ -113,14 +116,18 @@ const Navbar = () => {
                 <div className="profile-menu">
                   <div className="profile-menu-header">
                     <strong>{user.name}</strong>
-                    <small>{user.email}</small>
+                    <small >{user.email}</small>
                     <span className={`role-badge role-${user.role}`}>{user.role}</span>
                   </div>
                   <div className="profile-menu-items">
-                    <Link to="/dashboard" className="profile-menu-item" onClick={() => setProfileOpen(false)}>📊 Dashboard</Link>
-                    <Link to="/my-bookings" className="profile-menu-item" onClick={() => setProfileOpen(false)}>📅 My Bookings</Link>
+                    <Link to="/dashboard" className="profile-menu-item" onClick={() => setProfileOpen(false)}>
+                      <FiGrid style={{ marginRight: 8 }} /> Dashboard
+                    </Link>
+                    <Link to="/my-bookings" className="profile-menu-item" onClick={() => setProfileOpen(false)}>
+                      <FiCalendar style={{ marginRight: 8 }} /> My Bookings
+                    </Link>
                     <Link to="/wishlist" className="profile-menu-item" onClick={() => setProfileOpen(false)}>
-                      ❤️ Wishlist
+                      <FiHeart style={{ marginRight: 8 }} /> Wishlist
                       {wishlistCount > 0 && (
                         <span style={{
                           marginLeft: 'auto', background: '#dc3545', color: '#fff',
@@ -131,9 +138,19 @@ const Navbar = () => {
                         </span>
                       )}
                     </Link>
-                    {isHost && <Link to="/host" className="profile-menu-item" onClick={() => setProfileOpen(false)}>🏠 Host Panel</Link>}
-                    {isAdmin && <Link to="/admin" className="profile-menu-item" onClick={() => setProfileOpen(false)}>⚙️ Admin Panel</Link>}
-                    <button className="profile-menu-item logout-btn" onClick={handleLogout}>🚪 Logout</button>
+                    {isHost && (
+                      <Link to="/host" className="profile-menu-item" onClick={() => setProfileOpen(false)}>
+                        <FiHome style={{ marginRight: 8 }} /> Host Panel
+                      </Link>
+                    )}
+                    {isAdmin && (
+                      <Link to="/admin" className="profile-menu-item" onClick={() => setProfileOpen(false)}>
+                        <FiShield style={{ marginRight: 8 }} /> Admin Panel
+                      </Link>
+                    )}
+                    <button className="profile-menu-item logout-btn" onClick={handleLogout}>
+                      <FiLogOut style={{ marginRight: 8 }} /> Logout
+                    </button>
                   </div>
                 </div>
               )}
@@ -141,7 +158,7 @@ const Navbar = () => {
           ) : (
             <div className="auth-buttons">
               <Link to="/login" className="btn btn-ghost btn-sm">Sign In</Link>
-              <Link to="/register" className="btn btn-primary btn-sm">Sign Up</Link>
+              {/* <Link to="/register" className="btn btn-primary btn-sm">Sign Up</Link> */}
             </div>
           )}
 
@@ -181,7 +198,7 @@ const Navbar = () => {
           ) : (
             <div className="mobile-auth">
               <Link to="/login" className="btn btn-ghost" onClick={() => setMobileOpen(false)}>Sign In</Link>
-              <Link to="/register" className="btn btn-primary" onClick={() => setMobileOpen(false)}>Sign Up</Link>
+              {/* <Link to="/register" className="btn btn-primary" onClick={() => setMobileOpen(false)}>Sign Up</Link> */}
             </div>
           )}
         </div>

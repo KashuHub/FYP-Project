@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
+import { FaBook, FaHome } from "react-icons/fa";
 import './Auth.css';
 
 export const Login = () => {
@@ -39,14 +41,14 @@ export const Login = () => {
           <h2>Welcome back</h2>
           <p className="auth-sub">Sign in to continue your adventure</p>
 
-          <div className="demo-accounts">
+          {/* <div className="demo-accounts">
             <p>Demo accounts:</p>
             <div className="demo-btns">
               <button className="demo-btn" onClick={() => setForm({ email: 'admin@tourista.pk', password: 'admin123' })}>Admin</button>
               <button className="demo-btn" onClick={() => setForm({ email: 'karim@host.pk', password: 'host123' })}>Host</button>
               <button className="demo-btn" onClick={() => setForm({ email: 'ali@user.pk', password: 'user123' })}>User</button>
             </div>
-          </div>
+          </div> */}
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -59,8 +61,13 @@ export const Login = () => {
               <div style={{ position: 'relative' }}>
                 <input type={showPass ? 'text' : 'password'} className="form-control" placeholder="••••••••" value={form.password}
                   onChange={e => setForm(p => ({ ...p, password: e.target.value }))} required />
-                <button type="button" onClick={() => setShowPass(!showPass)} style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.1rem', color: 'var(--gray-500)' }}>
-                  {showPass ? '🙈' : '👁️'}
+                <button
+                  type="button"
+                  onClick={() => setShowPass(!showPass)}
+                  aria-label={showPass ? 'Hide password' : 'Show password'}
+                  style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'black'}}
+                >
+                  {showPass ? <FiEyeOff size={18} /> : <FiEye size={18} />}
                 </button>
               </div>
             </div>
@@ -79,6 +86,7 @@ export const Register = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: '', email: '', password: '', role: 'user' });
+  const [showPassReg, setShowPassReg] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -104,7 +112,7 @@ export const Register = () => {
       </div>
       <div className="auth-card-wrap">
         <div className="auth-card">
-          <Link to="/" className="auth-logo">🏔 Tourista GB</Link>
+          <Link to="/" className="auth-logo">Tourista GB</Link>
           <h2>Create an account</h2>
           <p className="auth-sub">Join thousands of GB travelers</p>
           <form onSubmit={handleSubmit}>
@@ -120,20 +128,33 @@ export const Register = () => {
             </div>
             <div className="form-group">
               <label>Password</label>
-              <input type="password" className="form-control" placeholder="Min 6 characters" value={form.password}
-                onChange={e => setForm(p => ({ ...p, password: e.target.value }))} required minLength={6} />
+              <div style={{ position: 'relative' }}>
+                <input type={showPassReg ? 'text' : 'password'} className="form-control" placeholder="Min 6 characters" value={form.password}
+                  onChange={e => setForm(p => ({ ...p, password: e.target.value }))} required minLength={6} />
+                <button
+                  type="button"
+                  onClick={() => setShowPassReg(!showPassReg)}
+                  aria-label={showPassReg ? 'Hide password' : 'Show password'}
+                  style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'var(--gray-500)'}}
+                >
+                  {showPassReg ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+                </button>
+              </div>
             </div>
             <div className="form-group">
               <label>I want to</label>
               <div className="role-selector">
                 <label className={`role-option ${form.role === 'user' ? 'selected' : ''}`}>
                   <input type="radio" name="role" value="user" checked={form.role === 'user'} onChange={() => setForm(p => ({ ...p, role: 'user' }))} />
-                  <span className="role-icon">🧳</span>
+                  {/* <span className="role-icon">🧳</span> */}
+                  <FaBook style={{width:27,height:27}}/>
+               
                   <span><strong>Explore & Book</strong><small>Travel & book stays</small></span>
                 </label>
                 <label className={`role-option ${form.role === 'host' ? 'selected' : ''}`}>
                   <input type="radio" name="role" value="host" checked={form.role === 'host'} onChange={() => setForm(p => ({ ...p, role: 'host' }))} />
-                  <span className="role-icon">🏠</span>
+                  {/* <span className="role-icon">🏠</span> */}
+                  <FaHome style={{width:30,height:30}}/>
                   <span><strong>Host & Earn</strong><small>List your property</small></span>
                 </label>
               </div>

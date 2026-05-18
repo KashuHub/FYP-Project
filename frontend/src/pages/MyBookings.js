@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { bookingAPI } from '../services/api';
 import { toast } from 'react-toastify';
+import { IoSearch } from "react-icons/io5";
+import { FaCalendar, FaHeart } from "react-icons/fa";
 
 const statusColors = {
   pending: 'warning', confirmed: 'success', cancelled: 'danger', completed: 'primary'
@@ -48,7 +50,7 @@ const MyBookings = () => {
       <div className="container" style={{ maxWidth: 900 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32, flexWrap: 'wrap', gap: 16 }}>
           <h1 style={{ color: 'var(--primary-dark)', fontSize: '2rem' }}>My Bookings</h1>
-          <Link to="/stays" className="btn btn-primary btn-sm">🔍 Find More Stays</Link>
+          <Link to="/stays" className="btn btn-primary btn-sm"> <IoSearch style={{width:20 , height:20}}/> Find More Stays</Link>
         </div>
 
         {/* Status filter tabs */}
@@ -62,7 +64,7 @@ const MyBookings = () => {
           <div className="spinner-wrapper"><div className="spinner"></div></div>
         ) : filtered.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-state-icon">📅</div>
+            <div className="empty-state-icon"><FaCalendar /></div>
             <h3>No bookings {filter !== 'all' ? `with status "${filter}"` : 'yet'}</h3>
             <p>Start exploring amazing stays in Gilgit-Baltistan!</p>
             <Link to="/stays" className="btn btn-primary">Browse Stays</Link>
