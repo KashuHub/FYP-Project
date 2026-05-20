@@ -77,18 +77,18 @@ const About = () => (
 
       {/* Team */}
       <section className="about-section">
-        <h2 className="section-title" style={{ textAlign: 'center' }}>Meet the Team</h2>
-        <p className="section-subtitle" style={{ textAlign: 'center' }}>Final Year Project — BS Computer Science, University of Agriculture, Peshawar (2022–2026)</p>
-        <p style={{ textAlign: 'center', color: 'var(--gray-600)', marginBottom: 32, fontSize: '0.9rem' }}>
+        <h2 className="section-title" style={{ textAlign: 'center' , marginBottom:20}}>Meet the Team</h2>
+        {/* <p className="section-subtitle" style={{ textAlign: 'center' }}>Final Year Project — BS Computer Science, University of Agriculture, Peshawar (2022–2026)</p> */}
+        {/* <p style={{ textAlign: 'center', color: 'var(--gray-600)', marginBottom: 32, fontSize: '0.9rem' }}>
           Supervisor: <strong>Ms. Lala Rukh</strong>
-        </p>
+        </p> */}
         <div className="team-grid">
           {team.map(member => (
             <div key={member.id} className="team-card">
               <div className="team-avatar">{member.emoji}</div>
               <h3>{member.name}</h3>
-              <div className="team-role">{member.role}</div>
-              <div className="team-id">Student ID: {member.id}</div>
+              {/* <div className="team-role">{member.role}</div>
+              <div className="team-id">Student ID: {member.id}</div> */}
               <p>{member.desc}</p>
             </div>
           ))}
@@ -99,7 +99,7 @@ const About = () => (
       <section className="about-section">
         <div className="about-gb">
           <div className="about-gb-content">
-            <h2>About Gilgit-Baltistan 🏔</h2>
+            <h2>About Gilgit-Baltistan</h2>
             <p>Gilgit-Baltistan is Pakistan's northernmost territory and one of the most spectacular mountain regions on Earth. It borders China, Afghanistan, and Indian-occupied Kashmir, and is home to three of the world's greatest mountain ranges — the Karakoram, Himalayas, and Hindu Kush.</p>
             <p>The region contains five of the world's seventeen 8,000m peaks, including K2 (8,611m) — the world's second highest and arguably its most challenging. It also contains the largest glaciers outside the polar regions, including the Biafo and Baltoro glaciers.</p>
             <div className="gb-facts">
