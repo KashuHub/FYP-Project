@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FiEdit, FiHome, FiClock, FiCheckCircle } from 'react-icons/fi';
+import { FaBullseye, FaMapMarkedAlt, FaLock, FaTachometerAlt, FaStar, FaRegMoneyBillAlt } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 import './BecomeHost.css';
 
 const steps = [
-  { num: '01', icon: '📝', title: 'Create an Account', desc: 'Sign up as a Host on Tourista. It\'s completely free. No hidden fees.' },
-  { num: '02', icon: '🏠', title: 'List Your Property', desc: 'Add photos, description, amenities, location on the map, and set your price per night.' },
-  { num: '03', icon: '⏳', title: 'Wait for Approval', desc: 'Our admin team reviews every listing to ensure quality. Approval takes 24-48 hours.' },
-  { num: '04', icon: '🎉', title: 'Start Hosting!', desc: 'Go live and start receiving bookings from travelers exploring Gilgit-Baltistan.' },
+  { num: '01', icon: FiEdit, title: 'Create an Account', desc: 'Sign up as a Host on Tourista. It\'s completely free. No hidden fees.' },
+  { num: '02', icon: FiHome, title: 'List Your Property', desc: 'Add photos, description, amenities, location on the map, and set your price per night.' },
+  { num: '03', icon: FiClock, title: 'Wait for Approval', desc: 'Our admin team reviews every listing to ensure quality. Approval takes 24-48 hours.' },
+  { num: '04', icon: FiCheckCircle, title: 'Start Hosting!', desc: 'Go live and start receiving bookings from travelers exploring Gilgit-Baltistan.' },
 ];
 
 const earnings = [
@@ -50,8 +52,8 @@ const BecomeHost = () => {
             <a href="#how-it-works" className="btn btn-outline" style={{ borderColor: 'white', color: 'white' }}>Learn More</a>
           </div>
           <div className="bh-hero-stats">
-            <div className="bh-stat"><strong>120+</strong><span>Active Hosts</span></div>
-            <div className="bh-stat"><strong>10K+</strong><span>Bookings Made</span></div>
+            <div className="bh-stat"><strong>120 +</strong><span>Active Hosts</span></div>
+            <div className="bh-stat"><strong>10K +</strong><span>Bookings Made</span></div>
             <div className="bh-stat"><strong>PKR 0</strong><span>To List</span></div>
           </div>
         </div>
@@ -66,7 +68,7 @@ const BecomeHost = () => {
             {steps.map((step, i) => (
               <div key={step.num} className="bh-step">
                 <div className="bh-step-num">{step.num}</div>
-                <div className="bh-step-icon">{step.icon}</div>
+                <div className="bh-step-icon"><step.icon /></div>
                 <h3>{step.title}</h3>
                 <p>{step.desc}</p>
                 {i < steps.length - 1 && <div className="bh-step-arrow">→</div>}
@@ -90,7 +92,7 @@ const BecomeHost = () => {
               </div>
             ))}
           </div>
-          <p style={{ textAlign: 'center', color: 'var(--gray-500)', fontSize: '0.85rem', marginTop: 20 }}>
+          <p style={{ textAlign: 'center', color: 'var(--gray-700)', fontSize: '0.85rem', marginTop: 20 }}>
             * Earnings vary by season, location, and listing quality. Peak season (June–September) can yield 2–3x higher bookings.
           </p>
         </div>
@@ -101,21 +103,21 @@ const BecomeHost = () => {
         <div className="container">
           <div className="bh-why-grid">
             <div className="bh-why-img">
-              <img src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=700" alt="GB Tourism" />
+              <img src="https://images.unsplash.com/photo-1514558427911-8e293bebf18c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aHVuemF8ZW58MHx8MHx8fDA%3Dhttps://images.unsplash.com/photo-1589610190054-ca780b311d16?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aHVuemF8ZW58MHx8MHx8fDA%3D" alt="GB Tourism" />
             </div>
             <div className="bh-why-content">
               <h2>Why Host on Tourista?</h2>
               <div className="bh-why-points">
                 {[
-                  { icon: '🎯', title: 'Targeted Audience', desc: 'We attract travelers specifically interested in GB tourism — no irrelevant traffic.' },
-                  { icon: '🗺️', title: 'Map Visibility', desc: 'Your property appears on our interactive map, giving you geographic discoverability.' },
-                  { icon: '🔒', title: 'Secure Bookings', desc: 'All bookings are processed through our secure system. You control acceptance.' },
-                  { icon: '📊', title: 'Host Dashboard', desc: 'Manage all your listings, bookings, and earnings from one clean dashboard.' },
-                  { icon: '⭐', title: 'Reviews System', desc: 'Build your reputation through verified guest reviews. Great ratings = more bookings.' },
-                  { icon: '🆓', title: 'Free to Start', desc: 'No upfront costs, no monthly fees. List for free and pay only when you earn.' },
+                  { icon: FaBullseye, title: 'Targeted Audience', desc: 'We attract travelers specifically interested in GB tourism — no irrelevant traffic.' },
+                  { icon: FaMapMarkedAlt, title: 'Map Visibility', desc: 'Your property appears on our interactive map, giving you geographic discoverability.' },
+                  { icon: FaLock, title: 'Secure Bookings', desc: 'All bookings are processed through our secure system. You control acceptance.' },
+                  { icon: FaTachometerAlt, title: 'Host Dashboard', desc: 'Manage all your listings, bookings, and earnings from one clean dashboard.' },
+                  { icon: FaStar, title: 'Reviews System', desc: 'Build your reputation through verified guest reviews. Great ratings = more bookings.' },
+                  { icon: FaRegMoneyBillAlt, title: 'Free to Start', desc: 'No upfront costs, no monthly fees. List for free and pay only when you earn.' },
                 ].map(p => (
                   <div key={p.title} className="bh-why-point">
-                    <span className="bh-why-icon">{p.icon}</span>
+                    <span className="bh-why-icon"><p.icon /></span>
                     <div>
                       <strong>{p.title}</strong>
                       <p>{p.desc}</p>

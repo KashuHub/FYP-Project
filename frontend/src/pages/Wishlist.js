@@ -4,6 +4,8 @@ import { authAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import './Wishlist.css';
+import { IoSearch } from 'react-icons/io5';
+import { FaHotel, FaMapMarkedAlt, FaHome, FaTree, FaStar } from 'react-icons/fa';
 
 const regions = ['Hunza','Skardu','Ghizer','Astore','Ghanche','Diamer','Nagar','Gilgit'];
 
@@ -114,7 +116,7 @@ const Wishlist = () => {
           </div>
           <div className="wl-hero-actions">
             <Link to="/stays" className="btn btn-primary">
-              🔍 Explore More
+              <IoSearch style={{ width: 20, height: 20 }} /> Explore More
             </Link>
           </div>
         </div>
@@ -200,23 +202,23 @@ const Wishlist = () => {
             </p>
             <div className="wl-empty-actions">
               <Link to="/stays" className="btn btn-primary btn-lg">
-                🏨 Browse Stays
+                <FaHotel style={{ marginRight: 8 }} /> Browse Stays
               </Link>
               <Link to="/places" className="btn btn-outline btn-lg">
-                🗺️ Explore Places
+                <FaMapMarkedAlt style={{ marginRight: 8 }} /> Explore Places
               </Link>
             </div>
             <div className="wl-empty-tips">
               <h4>What can you save?</h4>
               <div className="wl-tip-grid">
                 {[
-                  { icon: '🏨', label: 'Hotels' },
-                  { icon: '🏡', label: 'Guesthouses' },
-                  { icon: '🪵', label: 'Cabins' },
-                  { icon: '✨', label: 'Resorts' },
+                  { icon: FaHotel, label: 'Hotels' },
+                  { icon: FaHome, label: 'Guesthouses' },
+                  { icon: FaTree, label: 'Cabins' },
+                  { icon: FaStar, label: 'Resorts' },
                 ].map(t => (
                   <div key={t.label} className="wl-tip-item">
-                    <span>{t.icon}</span>
+                    <span><t.icon /></span>
                     <span>{t.label}</span>
                   </div>
                 ))}

@@ -5,22 +5,41 @@ import PropertyCard from '../components/common/PropertyCard';
 import PlaceCard from '../components/common/PlaceCard';
 import ExperienceCard from '../components/common/ExperienceCard';
 import MapView from '../components/common/MapView';
+import { FiArrowRight, FiCalendar, FiMapPin, FiSearch, FiUsers } from 'react-icons/fi';
+import {
+  FaCampground,
+  FaCarSide,
+  FaCheckCircle,
+  FaFeatherAlt,
+  FaFlag,
+  FaGem,
+  FaHeadset,
+  FaHiking,
+  FaLock,
+  FaMapMarkedAlt,
+  FaMosque,
+  FaMountain,
+  FaSnowflake,
+  FaTree,
+  FaUserTie,
+  FaWater,
+} from 'react-icons/fa';
 import './Home.css';
 
 const regions = [
-  { name: 'Hunza', emoji: '🏔', desc: 'Cherry blossoms & ancient forts', color: '#0a3d62' },
-  { name: 'Skardu', emoji: '🏕', desc: 'Gateway to K2 & Karakoram', color: '#1a6fa8' },
-  { name: 'Astore', emoji: '🦅', desc: 'Deosai & Nanga Parbat base', color: '#0e5c3a' },
-  { name: 'Ghizer', emoji: '🌊', desc: 'Phander Lake & green valleys', color: '#6a3d1f' },
-  { name: 'Nagar', emoji: '❄️', desc: 'Glaciers & pristine peaks', color: '#2c3e50' },
-  { name: 'Gilgit', emoji: '🕌', desc: 'Cultural hub of GB', color: '#7b341e' },
+  { name: 'Hunza', icon: FaMountain, desc: 'Cherry blossoms & ancient forts', color: '#0a3d62' },
+  { name: 'Skardu', icon: FaCampground, desc: 'Gateway to K2 & Karakoram', color: '#1a6fa8' },
+  { name: 'Astore', icon: FaFeatherAlt, desc: 'Deosai & Nanga Parbat base', color: '#0e5c3a' },
+  { name: 'Ghizer', icon: FaWater, desc: 'Phander Lake & green valleys', color: '#6a3d1f' },
+  { name: 'Nagar', icon: FaSnowflake, desc: 'Glaciers & pristine peaks', color: '#2c3e50' },
+  { name: 'Gilgit', icon: FaMosque, desc: 'Cultural hub of GB', color: '#7b341e' },
 ];
 
 const stats = [
-  { value: '120+', label: 'Verified Properties' },
-  { value: '50+', label: 'Destinations' },
-  { value: '30+', label: 'Unique Experiences' },
-  { value: '10K+', label: 'Happy Travelers' },
+  { value: '120 +', label: 'Verified Properties' },
+  { value: '50 +', label: 'Destinations' },
+  { value: '30 +', label: 'Unique Experiences' },
+  { value: '10K +', label: 'Happy Travelers' },
 ];
 
 const Home = () => {
@@ -78,7 +97,7 @@ const Home = () => {
           <div className="hero-overlay"></div>
         </div>
         <div className="hero-content container">
-          <div className="hero-badge">🇵🇰 Gilgit-Baltistan, Pakistan</div>
+          <div className="hero-badge"><FaFlag style={{ marginRight: 8 }} /> Gilgit-Baltistan, Pakistan</div>
           <h1 className="hero-title">
             Discover the <span>Roof of the World</span>
           </h1>
@@ -90,7 +109,7 @@ const Home = () => {
           {/* Search Panel */}
           <form className="search-panel" onSubmit={handleSearch}>
             <div className="search-field">
-              <label>📍 Destination</label>
+              <label><FiMapPin style={{ marginRight: 6 }} /> Destination</label>
               <select
                 value={search.location}
                 onChange={e => setSearch({ ...search, location: e.target.value })}
@@ -102,7 +121,7 @@ const Home = () => {
             </div>
             <div className="search-divider" />
             <div className="search-field">
-              <label>📅 Check-in Date</label>
+              <label><FiCalendar style={{ marginRight: 6 }} /> Check-in Date</label>
               <input
                 type="date"
                 className="form-control"
@@ -113,7 +132,7 @@ const Home = () => {
             </div>
             <div className="search-divider" />
             <div className="search-field">
-              <label>👥 Guests</label>
+              <label><FiUsers style={{ marginRight: 6 }} /> Guests</label>
               <select
                 value={search.guests}
                 onChange={e => setSearch({ ...search, guests: e.target.value })}
@@ -123,15 +142,15 @@ const Home = () => {
               </select>
             </div>
             <button type="submit" className="btn btn-accent btn-search">
-              🔍 Search
+              <FiSearch style={{ marginRight: 8 }} /> Search
             </button>
           </form>
 
           <div className="hero-quick-links">
-            <Link to="/experiences?type=trekking" className="quick-link">🥾 Trekking</Link>
-            <Link to="/places?isHiddenGem=true" className="quick-link">💎 Hidden Gems</Link>
-            <Link to="/experiences?type=jeep-safari" className="quick-link">🚙 Jeep Safari</Link>
-            <Link to="/stays?type=cabin" className="quick-link">🪵 Cabins</Link>
+            <Link to="/experiences?type=trekking" className="quick-link"><FaHiking style={{ marginRight: 8 }} /> Trekking</Link>
+            <Link to="/places?isHiddenGem=true" className="quick-link"><FaGem style={{ marginRight: 8 }} /> Hidden Gems</Link>
+            <Link to="/experiences?type=jeep-safari" className="quick-link"><FaCarSide style={{ marginRight: 8 }} /> Jeep Safari</Link>
+            <Link to="/stays?type=cabin" className="quick-link"><FaTree style={{ marginRight: 8 }} /> Cabins</Link>
           </div>
         </div>
 
@@ -167,10 +186,10 @@ const Home = () => {
                 className="region-card"
                 style={{ '--region-color': region.color }}
               >
-                <div className="region-emoji">{region.emoji}</div>
+                <div className="region-emoji"><region.icon /></div>
                 <h3>{region.name}</h3>
                 <p>{region.desc}</p>
-                <span className="region-explore">Explore →</span>
+                <span className="region-explore">Explore <FiArrowRight /></span>
               </Link>
             ))}
           </div>
@@ -185,7 +204,7 @@ const Home = () => {
               <h2 className="section-title">Best Places to Stay</h2>
               <p className="section-subtitle">Handpicked stays across Gilgit-Baltistan</p>
             </div>
-            <Link to="/stays" className="btn btn-outline">View All Stays →</Link>
+            <Link to="/stays" className="btn btn-outline">View All Stays <FiArrowRight /></Link>
           </div>
           {loading ? (
             <div className="spinner-wrapper"><div className="spinner"></div></div>
@@ -205,7 +224,7 @@ const Home = () => {
               <h2 className="section-title">Must-Visit Places</h2>
               <p className="section-subtitle">Iconic destinations that will take your breath away</p>
             </div>
-            <Link to="/places" className="btn btn-outline">All Places →</Link>
+            <Link to="/places" className="btn btn-outline">All Places <FiArrowRight /></Link>
           </div>
           {loading ? (
             <div className="spinner-wrapper"><div className="spinner"></div></div>
@@ -244,7 +263,7 @@ const Home = () => {
               <h2 className="section-title">Local Experiences</h2>
               <p className="section-subtitle">Authentic adventures led by local guides</p>
             </div>
-            <Link to="/experiences" className="btn btn-outline">All Experiences →</Link>
+            <Link to="/experiences" className="btn btn-outline">All Experiences <FiArrowRight /></Link>
           </div>
           {loading ? (
             <div className="spinner-wrapper"><div className="spinner"></div></div>
@@ -263,7 +282,7 @@ const Home = () => {
             <div className="host-cta-text">
               <h2>Share Your Home with the World</h2>
               <p>List your guesthouse, hotel, or cabin on Tourista and reach thousands of travelers exploring Gilgit-Baltistan every year.</p>
-              <Link to="/become-host" className="btn btn-accent btn-lg">Become a Host →</Link>
+              <Link to="/become-host" className="btn btn-accent btn-lg">Become a Host <FiArrowRight /></Link>
             </div>
             <div className="host-cta-img">
               <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600" alt="Become a host" />
@@ -279,15 +298,15 @@ const Home = () => {
           <p className="section-subtitle" style={{ textAlign: 'center' }}>The only platform built specifically for GB tourism</p>
           <div className="features-grid">
             {[
-              { icon: '🏔', title: 'GB Focused', desc: 'Every listing, experience, and guide is specific to Gilgit-Baltistan.' },
-              { icon: '✅', title: 'Verified Listings', desc: 'All properties and experiences are reviewed and approved before publishing.' },
-              { icon: '🗺️', title: 'Interactive Maps', desc: 'Explore stays, places, and routes on live interactive maps.' },
-              { icon: '🔒', title: 'Secure Booking', desc: 'JWT-secured accounts with transparent, direct booking system.' },
-              { icon: '👨‍💼', title: 'Local Hosts', desc: 'Book directly with local hosts who know GB inside out.' },
-              { icon: '📞', title: '24/7 Support', desc: 'Emergency contacts and travel support available around the clock.' },
+              { icon: FaMountain, title: 'GB Focused', desc: 'Every listing, experience, and guide is specific to Gilgit-Baltistan.' },
+              { icon: FaCheckCircle, title: 'Verified Listings', desc: 'All properties and experiences are reviewed and approved before publishing.' },
+              { icon: FaMapMarkedAlt, title: 'Interactive Maps', desc: 'Explore stays, places, and routes on live interactive maps.' },
+              { icon: FaLock, title: 'Secure Booking', desc: 'JWT-secured accounts with transparent, direct booking system.' },
+              { icon: FaUserTie, title: 'Local Hosts', desc: 'Book directly with local hosts who know GB inside out.' },
+              { icon: FaHeadset, title: '24/7 Support', desc: 'Emergency contacts and travel support available around the clock.' },
             ].map(f => (
               <div key={f.title} className="feature-card">
-                <div className="feature-icon">{f.icon}</div>
+                <div className="feature-icon"><f.icon /></div>
                 <h3>{f.title}</h3>
                 <p>{f.desc}</p>
               </div>

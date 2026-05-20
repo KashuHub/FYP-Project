@@ -1,11 +1,20 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { FaHiking, FaTheaterMasks, FaCarSide, FaCampground, FaCamera, FaFish, FaMountain } from 'react-icons/fa';
 import { useSearchParams } from 'react-router-dom';
 import { experienceAPI } from '../services/api';
 import ExperienceCard from '../components/common/ExperienceCard';
-
+import { IoSearch } from "react-icons/io5";
 const regions = ['Hunza','Skardu','Ghizer','Astore','Ghanche','Diamer','Nagar','Gilgit'];
 const types = ['trekking','cultural','jeep-safari','camping','photography','fishing','rock-climbing'];
-const typeLabels = { trekking:'🥾 Trekking', cultural:'🎭 Cultural', 'jeep-safari':'🚙 Jeep Safari', camping:'⛺ Camping', photography:'📷 Photography', fishing:'🎣 Fishing', 'rock-climbing':'🧗 Rock Climbing' };
+const typeLabels = {
+  trekking: <><FaHiking style={{ marginRight: 6 }} /> Trekking</>,
+  cultural: <><FaTheaterMasks style={{ marginRight: 6 }} /> Cultural</>,
+  'jeep-safari': <><FaCarSide style={{ marginRight: 6 }} /> Jeep Safari</>,
+  camping: <><FaCampground style={{ marginRight: 6 }} /> Camping</>,
+  photography: <><FaCamera style={{ marginRight: 6 }} /> Photography</>,
+  fishing: <><FaFish style={{ marginRight: 6 }} /> Fishing</>,
+  'rock-climbing': <><FaMountain style={{ marginRight: 6 }} /> Rock Climbing</>,
+};
 
 const Experiences = () => {
   const [searchParams] = useSearchParams();
@@ -51,8 +60,9 @@ const Experiences = () => {
       </div>
       <div className="container">
         {/* Search */}
-        <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
-          <input type="text" className="form-control" placeholder="🔍 Search experiences..." value={filters.search}
+        <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap', position: 'relative' }}>
+          <IoSearch style={{ position: 'absolute', left: 12, top: 14 }} />
+          <input type="text" className="form-control" placeholder="    Search experiences..." value={filters.search}
             onChange={e => update('search', e.target.value)} style={{ flex: 1, minWidth: 200 }} />
           <input type="number" className="form-control" placeholder="Max Price (PKR)" value={filters.maxPrice}
             onChange={e => update('maxPrice', e.target.value)} style={{ width: 180 }} />
@@ -82,7 +92,7 @@ const Experiences = () => {
           <div className="spinner-wrapper"><div className="spinner"></div></div>
         ) : experiences.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-state-icon">🥾</div>
+            <div className="empty-state-icon"><FaHiking /></div>
             <h3>No experiences found</h3>
             <p>Try different filters.</p>
           </div>

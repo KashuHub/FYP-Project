@@ -9,7 +9,7 @@ const PlaceCard = ({ place }) => {
     <Link to={`/places/${place._id}`} className="place-card">
       <div className="place-img-wrap">
         <img src={mainImage} alt={place.name} loading="lazy" />
-        {place.isHiddenGem && <span className="gem-badge">💎 Hidden Gem</span>}
+        {place.isHiddenGem && <span className="gem-badge">Hidden Gem</span>}
         {place.isFeatured && !place.isHiddenGem && <span className="featured-badge">⭐ Featured</span>}
         <div className="place-region-badge">{place.location?.region}</div>
       </div>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FiSearch } from 'react-icons/fi';
+import { FaHome, FaMapMarkedAlt, FaMoneyBillWave } from 'react-icons/fa';
 import './About.css';
 
 const team = [
@@ -26,7 +28,7 @@ const About = () => (
       {/* Mission */}
       <section className="about-section">
         <div className="about-card">
-          <h2>🎯 Our Mission</h2>
+          <h2>Our Mission</h2>
           <p>Tourista was built with one goal: to make Gilgit-Baltistan accessible to every traveler. GB is home to some of the world's most spectacular mountain landscapes — from the mighty K2 to the turquoise waters of Attabad Lake — yet tourism infrastructure has lagged behind the destination's incredible potential.</p>
           <p>We connect travelers with local hosts, authentic experiences, and hidden gems across all eight districts of GB, creating economic opportunities for local communities while promoting sustainable, responsible tourism.</p>
         </div>
@@ -37,13 +39,13 @@ const About = () => (
         <h2 className="section-title">The Problem We Solve</h2>
         <div className="about-problems">
           {[
-            { icon: '🔍', title: 'Fragmented Information', desc: 'Travelers spend hours searching Facebook groups, WhatsApp chats, and unverified blogs to plan a GB trip. Tourista centralizes everything.' },
-            { icon: '🏠', title: 'No Booking Platform', desc: 'Most guesthouses in GB had no online presence. Tourista gives every local host a digital storefront and booking system.' },
-            { icon: '🗺️', title: 'No Interactive Maps', desc: 'Finding the exact location of a guesthouse or trailhead in GB was nearly impossible. Our integrated map solves this.' },
-            { icon: '💰', title: 'No Transparent Pricing', desc: 'Prices were negotiated ad-hoc with no benchmarks. Tourista brings pricing transparency to GB hospitality.' },
+            { icon: FiSearch, title: 'Fragmented Information', desc: 'Travelers spend hours searching Facebook groups, WhatsApp chats, and unverified blogs to plan a GB trip. Tourista centralizes everything.' },
+            { icon: FaHome, title: 'No Booking Platform', desc: 'Most guesthouses in GB had no online presence. Tourista gives every local host a digital storefront and booking system.' },
+            { icon: FaMapMarkedAlt, title: 'No Interactive Maps', desc: 'Finding the exact location of a guesthouse or trailhead in GB was nearly impossible. Our integrated map solves this.' },
+            { icon: FaMoneyBillWave, title: 'No Transparent Pricing', desc: 'Prices were negotiated ad-hoc with no benchmarks. Tourista brings pricing transparency to GB hospitality.' },
           ].map(p => (
             <div key={p.title} className="about-problem-card">
-              <span>{p.icon}</span>
+              <span><p.icon /></span>
               <div>
                 <strong>{p.title}</strong>
                 <p>{p.desc}</p>
@@ -54,7 +56,7 @@ const About = () => (
       </section>
 
       {/* Tech Stack */}
-      <section className="about-section">
+      {/* <section className="about-section">
         <h2 className="section-title">Technology Stack</h2>
         <div className="tech-grid">
           {[
@@ -71,7 +73,7 @@ const About = () => (
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Team */}
       <section className="about-section">

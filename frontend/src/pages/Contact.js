@@ -1,21 +1,37 @@
 import React, { useState } from 'react';
+import {
+  FaCalendarAlt,
+  FaCommentDots,
+  FaEnvelope,
+  FaExclamationTriangle,
+  FaFlag,
+  FaHandsHelping,
+  FaHome,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaRegClock,
+  FaShieldAlt,
+  FaSitemap,
+  FaUniversity,
+  FaUpload,
+} from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import './Contact.css';
 
 const contactInfo = [
-  { icon: '📧', label: 'Email', value: 'info@tourista.pk', link: 'mailto:info@tourista.pk' },
-  { icon: '📞', label: 'Phone', value: '+92 315 000 0000', link: 'tel:+923150000000' },
-  { icon: '📍', label: 'Address', value: 'University of Agriculture, Peshawar, KPK, Pakistan' },
-  { icon: '🕐', label: 'Office Hours', value: 'Mon–Fri: 9AM – 5PM (PKT)' },
+  { icon: FaEnvelope, label: 'Email', value: 'info@tourista.pk', link: 'mailto:info@tourista.pk' },
+  { icon: FaPhoneAlt, label: 'Phone', value: '+92 315 000 0000', link: 'tel:+923150000000' },
+  { icon: FaMapMarkerAlt, label: 'Address', value: 'University of Agriculture, Peshawar, KPK, Pakistan' },
+  { icon: FaRegClock, label: 'Office Hours', value: 'Mon–Fri: 9AM – 5PM (PKT)' },
 ];
 
 const emergencyContacts = [
-  { name: 'GB Police', number: '1122', icon: '🚔' },
-  { name: 'Rescue & Emergency', number: '1122', icon: '🚑' },
-  { name: 'PTDC Islamabad', number: '051-9213398', icon: '🗺️' },
-  { name: 'GB Tourism Dept', number: '05811-920276', icon: '🏔' },
-  { name: 'Gilgit District HQ', number: '05811-920100', icon: '🏛️' },
-  { name: 'Skardu Tourism Office', number: '05815-452111', icon: '📋' },
+  { name: 'GB Police', number: '1122', icon: FaShieldAlt },
+  { name: 'Rescue & Emergency', number: '1122', icon: FaHandsHelping },
+  { name: 'PTDC Islamabad', number: '051-9213398', icon: FaSitemap },
+  { name: 'GB Tourism Dept', number: '05811-920276', icon: FaFlag },
+  { name: 'Gilgit District HQ', number: '05811-920100', icon: FaUniversity },
+  { name: 'Skardu Tourism Office', number: '05815-452111', icon: FaHome },
 ];
 
 const Contact = () => {
@@ -27,7 +43,7 @@ const Contact = () => {
     setSending(true);
     // Simulate sending (no backend email endpoint in MVP)
     await new Promise(r => setTimeout(r, 1200));
-    toast.success('✅ Message sent! We\'ll get back to you within 24 hours.');
+    toast.success('Message sent! We\'ll get back to you within 24 hours.');
     setForm({ name: '', email: '', subject: '', message: '', type: 'general' });
     setSending(false);
   };
@@ -51,10 +67,10 @@ const Contact = () => {
                 <label>Inquiry Type</label>
                 <div className="contact-type-chips">
                   {[
-                    { value: 'general', label: '💬 General' },
-                    { value: 'booking', label: '📅 Booking Help' },
-                    { value: 'host', label: '🏠 Host Support' },
-                    { value: 'report', label: '⚠️ Report Issue' },
+                    { value: 'general', label: <><FaCommentDots style={{ marginRight: 6 }} /> General</> },
+                    { value: 'booking', label: <><FaCalendarAlt style={{ marginRight: 6 }} /> Booking Help</> },
+                    { value: 'host', label: <><FaHome style={{ marginRight: 6 }} /> Host Support</> },
+                    { value: 'report', label: <><FaExclamationTriangle style={{ marginRight: 6 }} /> Report Issue</> },
                   ].map(t => (
                     <button
                       type="button" key={t.value}
@@ -102,7 +118,7 @@ const Contact = () => {
               </div>
 
               <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%' }} disabled={sending}>
-                {sending ? '📤 Sending...' : '📤 Send Message'}
+                {sending ? <><FaUpload style={{ marginRight: 6 }} /> Sending...</> : <><FaUpload style={{ marginRight: 6 }} /> Send Message</>}
               </button>
             </form>
           </div>
@@ -115,7 +131,7 @@ const Contact = () => {
               <div className="contact-info-items">
                 {contactInfo.map(info => (
                   <div key={info.label} className="contact-info-item">
-                    <span className="contact-info-icon">{info.icon}</span>
+                    <span className="contact-info-icon"><info.icon /></span>
                     <div>
                       <div className="contact-info-label">{info.label}</div>
                       {info.link ? (
@@ -131,17 +147,17 @@ const Contact = () => {
 
             {/* Emergency Contacts */}
             <div className="emergency-card">
-              <h3>🚨 Emergency Contacts in GB</h3>
+              <h3><FaExclamationTriangle style={{ marginRight: 8 }} /> Emergency Contacts in GB</h3>
               <p>If you're in an emergency situation while traveling in Gilgit-Baltistan, contact:</p>
               <div className="emergency-contacts">
                 {emergencyContacts.map(ec => (
                   <a key={ec.name} href={`tel:${ec.number}`} className="emergency-contact-item">
-                    <span>{ec.icon}</span>
+                    <span><ec.icon /></span>
                     <div>
                       <div className="ec-name">{ec.name}</div>
                       <div className="ec-number">{ec.number}</div>
                     </div>
-                    <span className="ec-call">📞</span>
+                    <span className="ec-call"><FaPhoneAlt /></span>
                   </a>
                 ))}
               </div>

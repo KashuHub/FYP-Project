@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { propertyAPI, experienceAPI, placeAPI, bookingAPI } from '../services/api';
+import { FiAlertTriangle, FiCalendar, FiCheck, FiEdit2, FiHome, FiMapPin, FiTrash2, FiUsers } from 'react-icons/fi';
+import { FaHotel, FaHiking } from 'react-icons/fa';
 import ImageUploader from '../components/common/ImageUploader';
 import { toast } from 'react-toastify';
 import './HostPanel.css';
@@ -141,30 +143,39 @@ const HostPanel = () => {
   return (
     <div style={{ padding: '40px 0 80px', background: 'var(--off-white)', minHeight: '80vh' }}>
       <div className="container">
-        <h1 style={{ marginBottom: 8, color: 'var(--primary-dark)', fontSize: '2rem' }}>🏠 Host Panel</h1>
+        <h1 style={{ marginBottom: 8, color: 'var(--primary-dark)', fontSize: '2rem', display: 'flex', alignItems: 'center', gap: 10 }}>
+          <FiHome /> Host Panel
+        </h1>
         <p style={{ color: 'var(--gray-500)', marginBottom: 32 }}>Manage your properties, experiences, and bookings</p>
 
         {/* Stats */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16, marginBottom: 32 }}>
           {[
-            { label: 'Properties', value: properties.length, icon: '🏨' },
-            { label: 'Approved', value: properties.filter(p => p.status === 'approved').length, icon: '✅' },
-            { label: 'Experiences', value: experiences.length, icon: '🥾' },
-            { label: 'Total Bookings', value: bookings.length, icon: '📅' },
+            { label: 'Properties', value: properties.length, icon: FaHotel },
+            { label: 'Approved', value: properties.filter(p => p.status === 'approved').length, icon: FiCheck },
+            { label: 'Experiences', value: experiences.length, icon: FaHiking },
+            { label: 'Total Bookings', value: bookings.length, icon: FiCalendar },
           ].map(s => (
             <div key={s.label} style={{ background: 'var(--white)', borderRadius: 'var(--radius-md)', padding: '20px 24px', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
-              <div style={{ fontSize: '1.8rem', marginBottom: 8 }}>{s.icon}</div>
+              <div style={{ fontSize: '1.8rem', marginBottom: 8 }}><s.icon /></div>
               <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'var(--primary)', fontFamily: 'var(--font-display)' }}>{s.value}</div>
               <div style={{ fontSize: '0.82rem', color: 'var(--gray-500)', fontWeight: 500 }}>{s.label}</div>
             </div>
           ))}
+
         </div>
 
         {/* Tabs */}
         <div className="tabs" style={{ marginBottom: 28 }}>
-          <button className={`tab ${tab === 'properties' ? 'active' : ''}`} onClick={() => setTab('properties')}>🏨 Properties</button>
-          <button className={`tab ${tab === 'experiences' ? 'active' : ''}`} onClick={() => setTab('experiences')}>🥾 Experiences</button>
-          <button className={`tab ${tab === 'bookings' ? 'active' : ''}`} onClick={() => setTab('bookings')}>📅 Bookings</button>
+          <button className={`tab ${tab === 'properties' ? 'active' : ''}`} onClick={() => setTab('properties')}>
+            <FaHotel style={{ marginRight: 6 }} /> Properties
+          </button>
+          <button className={`tab ${tab === 'experiences' ? 'active' : ''}`} onClick={() => setTab('experiences')}>
+            <FaHiking style={{ marginRight: 6 }} /> Experiences
+          </button>
+          <button className={`tab ${tab === 'bookings' ? 'active' : ''}`} onClick={() => setTab('bookings')}>
+            <FiCalendar style={{ marginRight: 6 }} /> Bookings
+          </button>
         </div>
 
         {/* PROPERTIES TAB */}
@@ -176,7 +187,7 @@ const HostPanel = () => {
 
             {loading ? <div className="spinner-wrapper"><div className="spinner"></div></div> :
               properties.length === 0 ? (
-                <div className="empty-state"><div className="empty-state-icon">🏨</div><h3>No properties yet</h3><p>Add your first property to start hosting!</p></div>
+                <div className="empty-state"><div className="empty-state-icon"><FaHotel /></div><h3>No properties yet</h3><p>Add your first property to start hosting!</p></div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   {properties.map(p => (
@@ -184,12 +195,16 @@ const HostPanel = () => {
                       <img src={p.images?.[0]?.url || 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200'} alt="" style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 8, flexShrink: 0 }} />
                       <div style={{ flex: 1, minWidth: 200 }}>
                         <h4 style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', fontWeight: 700, marginBottom: 4 }}>{p.title}</h4>
-                        <div style={{ fontSize: '0.82rem', color: 'var(--gray-500)' }}>📍 {p.location?.region} · PKR {p.price?.toLocaleString()}/night · {p.propertyType}</div>
+                        <div style={{ fontSize: '0.82rem', color: 'var(--gray-500)' }}><FiMapPin style={{ marginRight: 6 }} /> {p.location?.region} · PKR {p.price?.toLocaleString()}/night · {p.propertyType}</div>
                       </div>
                       <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                         {statusBadge(p.status)}
-                        <button className="btn btn-ghost btn-sm" onClick={() => { setEditingProp(p._id); setPropForm({ ...p, rules: p.rules?.join('\n') || '' }); setShowPropForm(true); }}>✏️ Edit</button>
-                        <button className="btn btn-sm" style={{ background: 'var(--danger)', color: 'white' }} onClick={() => handleDeleteProp(p._id)}>🗑️</button>
+                        <button className="btn btn-ghost btn-sm" onClick={() => { setEditingProp(p._id); setPropForm({ ...p, rules: p.rules?.join('\n') || '' }); setShowPropForm(true); }}>
+                          <FiEdit2 style={{ marginRight: 6 }} /> Edit
+                        </button>
+                        <button className="btn btn-sm" style={{ background: 'var(--danger)', color: 'white' }} onClick={() => handleDeleteProp(p._id)}>
+                          <FiTrash2 />
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -207,7 +222,7 @@ const HostPanel = () => {
             </div>
             {loading ? <div className="spinner-wrapper"><div className="spinner"></div></div> :
               experiences.length === 0 ? (
-                <div className="empty-state"><div className="empty-state-icon">🥾</div><h3>No experiences yet</h3></div>
+                <div className="empty-state"><div className="empty-state-icon"><FaHiking /></div><h3>No experiences yet</h3></div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   {experiences.map(e => (
@@ -215,7 +230,7 @@ const HostPanel = () => {
                       <img src={e.images?.[0]?.url || 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=200'} alt="" style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 8, flexShrink: 0 }} />
                       <div style={{ flex: 1, minWidth: 200 }}>
                         <h4 style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', fontWeight: 700, marginBottom: 4 }}>{e.title}</h4>
-                        <div style={{ fontSize: '0.82rem', color: 'var(--gray-500)' }}>📍 {e.location?.region} · PKR {e.price?.toLocaleString()}/person · {e.type}</div>
+                        <div style={{ fontSize: '0.82rem', color: 'var(--gray-500)' }}><FiMapPin style={{ marginRight: 6 }} /> {e.location?.region} · PKR {e.price?.toLocaleString()}/person · {e.type}</div>
                       </div>
                       <div>{statusBadge(e.status)}</div>
                     </div>
@@ -231,7 +246,7 @@ const HostPanel = () => {
           <div>
             {loading ? <div className="spinner-wrapper"><div className="spinner"></div></div> :
               bookings.length === 0 ? (
-                <div className="empty-state"><div className="empty-state-icon">📅</div><h3>No bookings yet</h3></div>
+                <div className="empty-state"><div className="empty-state-icon"><FiCalendar /></div><h3>No bookings yet</h3></div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {bookings.map(b => (
@@ -242,8 +257,10 @@ const HostPanel = () => {
                           Guest: {b.user?.name} · {b.user?.email}
                         </div>
                         <div style={{ fontSize: '0.82rem', color: 'var(--gray-600)', marginTop: 4 }}>
-                          {b.checkIn && `📅 ${new Date(b.checkIn).toLocaleDateString()} → ${new Date(b.checkOut).toLocaleDateString()}`}
-                          {' · '}👥 {b.guests?.total} guests
+                          {b.checkIn && (
+                            <span><FiCalendar style={{ marginRight: 6 }} /> {new Date(b.checkIn).toLocaleDateString()} → {new Date(b.checkOut).toLocaleDateString()}</span>
+                          )}
+                          {' · '}<FiUsers style={{ margin: '0 6px' }} /> {b.guests?.total} guests
                         </div>
                       </div>
                       <div style={{ textAlign: 'right' }}>
@@ -251,7 +268,9 @@ const HostPanel = () => {
                         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
                           {statusBadge(b.status)}
                           {b.status === 'pending' && (
-                            <button className="btn btn-sm" style={{ background: 'var(--success)', color: 'white' }} onClick={() => handleConfirmBooking(b._id)}>✓ Confirm</button>
+                            <button className="btn btn-sm" style={{ background: 'var(--success)', color: 'white' }} onClick={() => handleConfirmBooking(b._id)}>
+                              <FiCheck style={{ marginRight: 6 }} /> Confirm
+                            </button>
                           )}
                         </div>
                       </div>
@@ -351,7 +370,7 @@ const HostPanel = () => {
                   />
                   {uploadedPropImages.length === 0 && (
                     <p style={{ fontSize: '0.78rem', color: 'var(--accent-dark)', marginTop: 6 }}>
-                      ⚠️ No images uploaded yet — a placeholder will be used
+                      <FiAlertTriangle style={{ marginRight: 6 }} /> No images uploaded yet — a placeholder will be used
                     </p>
                   )}
                 </div>
@@ -455,7 +474,7 @@ const HostPanel = () => {
                   />
                   {uploadedExpImages.length === 0 && (
                     <p style={{ fontSize: '0.78rem', color: 'var(--accent-dark)', marginTop: 6 }}>
-                      ⚠️ No images uploaded yet — a placeholder will be used
+                      <FiAlertTriangle style={{ marginRight: 6 }} /> No images uploaded yet — a placeholder will be used
                     </p>
                   )}
                 </div>

@@ -40,11 +40,24 @@
 /* Dropdowns */
 .dropdown { position: relative; }
 .dropdown-menu {
-  position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+  position: absolute; top: calc(100% + 2px); left: 50%; transform: translateX(-50%);
   background: var(--white); border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg); border: 1px solid var(--gray-200);
   min-width: 200px; padding: 8px;
   animation: fadeDown 0.15s ease;
+}
+.dropdown:hover .dropdown-icon {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+.dropdown-icon {
+  width: 25px;
+  height: 25px;
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-icon {
+  transform: rotate(180deg);
 }
 @keyframes fadeDown { from { opacity: 0; transform: translateX(-50%) translateY(-8px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 .dropdown-item {
@@ -73,7 +86,7 @@
   display: flex; align-items: center; justify-content: center;
 }
 .profile-name { font-size: 0.9rem; font-weight: 600; color: var(--gray-900); }
-.chevron { font-size: 0.7rem; color: var(--gray-500); }
+.chevron { font-size: 1rem; color: var(--gray-700); }
 
 .profile-menu {
   position: absolute; top: calc(100% + 10px); right: 0;
@@ -89,7 +102,7 @@
   display: flex; flex-direction: column; gap: 3px;
 }
 .profile-menu-header strong { font-size: 0.95rem; color: var(--gray-900); }
-.profile-menu-header small { font-size: 0.8rem; color: var(--gray-500); }
+.profile-menu-header small { font-size: 0.8rem; color: var(--gray-700); }
 .role-badge {
   display: inline-block; font-size: 0.7rem; font-weight: 700;
   padding: 2px 8px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; width: fit-content;

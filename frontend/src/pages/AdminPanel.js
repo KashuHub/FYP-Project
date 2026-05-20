@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { adminAPI, propertyAPI, placeAPI, experienceAPI } from '../services/api';
 import { toast } from 'react-toastify';
+import {
+  FiCalendar,
+  FiCheck,
+  FiClock,
+  FiDollarSign,
+  FiMapPin,
+  FiSearch,
+  FiSettings,
+  FiUsers,
+  FiX,
+} from 'react-icons/fi';
+import { FaHiking, FaHotel } from 'react-icons/fa';
 import './AdminPanel.css';
 
 const AdminPanel = () => {
@@ -113,7 +125,11 @@ const AdminPanel = () => {
           {item[nameField]}
         </h4>
         <div style={{ fontSize: '0.8rem', color: 'var(--gray-500)' }}>
-          {item.location?.region && `📍 ${item.location.region} · `}
+          {item.location?.region && (
+            <>
+              <FiMapPin style={{ marginRight: 6 }} /> {item.location.region} ·{' '}
+            </>
+          )}
           Submitted by: <strong>{item.host?.name || item.createdBy?.name || 'Unknown'}</strong>
           {' · '}
           {new Date(item.createdAt).toLocaleDateString()}
@@ -127,7 +143,7 @@ const AdminPanel = () => {
           onClick={() => handleApprove(type, item._id, 'approved')}
           disabled={actionLoading === `${type}-${item._id}-approved`}
         >
-          {actionLoading === `${type}-${item._id}-approved` ? '...' : '✓ Approve'}
+          {actionLoading === `${type}-${item._id}-approved` ? '...' : <><FiCheck style={{ marginRight: 6 }} /> Approve</>}
         </button>
         <button
           className="btn btn-sm"
@@ -135,7 +151,7 @@ const AdminPanel = () => {
           onClick={() => handleApprove(type, item._id, 'rejected')}
           disabled={actionLoading === `${type}-${item._id}-rejected`}
         >
-          {actionLoading === `${type}-${item._id}-rejected` ? '...' : '✕ Reject'}
+          {actionLoading === `${type}-${item._id}-rejected` ? '...' : <><FiX style={{ marginRight: 6 }} /> Reject</>}
         </button>
       </div>
     </div>
@@ -146,19 +162,25 @@ const AdminPanel = () => {
       <div className="container">
         <div className="admin-header">
           <div>
-            <h1>⚙️ Admin Panel</h1>
+            <h1 style={{ display: 'flex', alignItems: 'center', gap: 8 }}><FiSettings /> Admin Panel</h1>
             <p>Manage users, listings, and approvals for Tourista GB</p>
           </div>
         </div>
 
         {/* Tabs */}
         <div className="tabs" style={{ marginBottom: 32 }}>
-          <button className={`tab ${tab === 'dashboard' ? 'active' : ''}`} onClick={() => setTab('dashboard')}>📊 Dashboard</button>
-          <button className={`tab ${tab === 'pending' ? 'active' : ''}`} onClick={() => setTab('pending')}>
-            ⏳ Pending {totalPending > 0 && <span className="pending-badge">{totalPending}</span>}
+          <button className={`tab ${tab === 'dashboard' ? 'active' : ''}`} onClick={() => setTab('dashboard')}>
+            <FiSettings style={{ marginRight: 6 }} /> Dashboard
           </button>
-          <button className={`tab ${tab === 'users' ? 'active' : ''}`} onClick={() => setTab('users')}>👥 Users</button>
-          <button className={`tab ${tab === 'bookings' ? 'active' : ''}`} onClick={() => setTab('bookings')}>📅 Bookings</button>
+          <button className={`tab ${tab === 'pending' ? 'active' : ''}`} onClick={() => setTab('pending')}>
+            <FiClock style={{ marginRight: 6 }} /> Pending {totalPending > 0 && <span className="pending-badge">{totalPending}</span>}
+          </button>
+          <button className={`tab ${tab === 'users' ? 'active' : ''}`} onClick={() => setTab('users')}>
+            <FiUsers style={{ marginRight: 6 }} /> Users
+          </button>
+          <button className={`tab ${tab === 'bookings' ? 'active' : ''}`} onClick={() => setTab('bookings')}>
+            <FiCalendar style={{ marginRight: 6 }} /> Bookings
+          </button>
         </div>
 
         {/* DASHBOARD TAB */}
@@ -169,12 +191,12 @@ const AdminPanel = () => {
             ) : stats ? (
               <>
                 <div className="admin-stats-grid">
-                  <StatCard icon="👥" label="Total Users" value={stats.users?.total} sub={`${stats.users?.hosts} hosts`} />
-                  <StatCard icon="🏨" label="Properties" value={stats.properties?.total} sub={`${stats.properties?.pending} pending`} color="var(--accent)" />
-                  <StatCard icon="📍" label="Places" value={stats.places?.total} sub={`${stats.places?.pending} pending`} color="#28a745" />
-                  <StatCard icon="🥾" label="Experiences" value={stats.experiences?.total} sub={`${stats.experiences?.pending} pending`} color="#6c3483" />
-                  <StatCard icon="📅" label="Total Bookings" value={stats.bookings?.total} color="#17a2b8" />
-                  <StatCard icon="💰" label="Total Revenue" value={`PKR ${(stats.revenue / 1000).toFixed(0)}K`} sub="Confirmed bookings" color="#e83e8c" />
+                  <StatCard icon={<FiUsers />} label="Total Users" value={stats.users?.total} sub={`${stats.users?.hosts} hosts`} />
+                  <StatCard icon={<FaHotel />} label="Properties" value={stats.properties?.total} sub={`${stats.properties?.pending} pending`} color="var(--accent)" />
+                  <StatCard icon={<FiMapPin />} label="Places" value={stats.places?.total} sub={`${stats.places?.pending} pending`} color="#28a745" />
+                  <StatCard icon={<FaHiking />} label="Experiences" value={stats.experiences?.total} sub={`${stats.experiences?.pending} pending`} color="#6c3483" />
+                  <StatCard icon={<FiCalendar />} label="Total Bookings" value={stats.bookings?.total} color="#17a2b8" />
+                  <StatCard icon={<FiDollarSign />} label="Total Revenue" value={`PKR ${(stats.revenue / 1000).toFixed(0)}K`} sub="Confirmed bookings" color="#e83e8c" />
                 </div>
 
                 <div className="admin-quick-actions">
@@ -202,11 +224,11 @@ const AdminPanel = () => {
                 {/* Properties */}
                 <div className="admin-section">
                   <h3 className="admin-section-title">
-                    🏨 Pending Properties
+                    <FaHotel style={{ marginRight: 6 }} /> Pending Properties
                     <span className="count-badge">{pending.properties.length}</span>
                   </h3>
                   {pending.properties.length === 0 ? (
-                    <div className="admin-empty">✅ No pending properties</div>
+                    <div className="admin-empty"><FiCheck style={{ marginRight: 6 }} /> No pending properties</div>
                   ) : (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                       {pending.properties.map(item => (
@@ -219,11 +241,11 @@ const AdminPanel = () => {
                 {/* Places */}
                 <div className="admin-section">
                   <h3 className="admin-section-title">
-                    📍 Pending Places
+                    <FiMapPin style={{ marginRight: 6 }} /> Pending Places
                     <span className="count-badge">{pending.places.length}</span>
                   </h3>
                   {pending.places.length === 0 ? (
-                    <div className="admin-empty">✅ No pending places</div>
+                    <div className="admin-empty"><FiCheck style={{ marginRight: 6 }} /> No pending places</div>
                   ) : (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                       {pending.places.map(item => (
@@ -236,11 +258,11 @@ const AdminPanel = () => {
                 {/* Experiences */}
                 <div className="admin-section">
                   <h3 className="admin-section-title">
-                    🥾 Pending Experiences
+                    <FaHiking style={{ marginRight: 6 }} /> Pending Experiences
                     <span className="count-badge">{pending.experiences.length}</span>
                   </h3>
                   {pending.experiences.length === 0 ? (
-                    <div className="admin-empty">✅ No pending experiences</div>
+                    <div className="admin-empty"><FiCheck style={{ marginRight: 6 }} /> No pending experiences</div>
                   ) : (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                       {pending.experiences.map(item => (
@@ -261,12 +283,14 @@ const AdminPanel = () => {
               <input
                 type="text"
                 className="form-control"
-                placeholder="🔍 Search users by name or email..."
+                placeholder="Search users by name or email..."
                 value={userSearch}
                 onChange={e => setUserSearch(e.target.value)}
                 style={{ maxWidth: 400 }}
               />
-              <button className="btn btn-primary btn-sm" onClick={fetchUsers}>Search</button>
+              <button className="btn btn-primary btn-sm" onClick={fetchUsers}>
+                <FiSearch style={{ marginRight: 6 }} /> Search
+              </button>
             </div>
 
             {loading ? (

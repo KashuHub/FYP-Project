@@ -50,12 +50,12 @@ export const AuthProvider = ({ children }) => {
     setWishlistCount(0);
   };
 
-  const updateUser = (updatedUser) => {
+  const updateUser = useCallback((updatedUser) => {
     setUser(updatedUser);
     if (updatedUser?.wishlist !== undefined) {
       setWishlistCount(updatedUser.wishlist.length);
     }
-  };
+  }, []);
 
   // Toggle wishlist — calls API and updates count in real-time
   const toggleWishlist = async (propertyId) => {
