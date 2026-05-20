@@ -53,7 +53,7 @@ const seed = async () => {
     },
     {
       name: 'Attabad Lake',
-      description: 'A stunning turquoise lake created in 2010 by a massive landslide. The lake's surreal blue-green color against the surrounding mountains makes it one of Pakistan's most photographed spots.',
+      description: `A stunning turquoise lake created in 2010 by a massive landslide. The lake's surreal blue-green color against the surrounding mountains makes it one of Pakistan's most photographed spots.`,
       images: [{ url: 'https://images.unsplash.com/photo-1609766857240-3e6e3c8c3a8e?w=800' }],
       location: { region: 'Hunza', address: 'Attabad, Gojal Valley, Hunza', latitude: 36.4100, longitude: 74.8600 },
       category: 'lake', bestTimeToVisit: { from: 'May', to: 'September' },
@@ -64,7 +64,7 @@ const seed = async () => {
     },
     {
       name: 'Fairy Meadows',
-      description: 'A lush green meadow at the base of Nanga Parbat, the world's ninth-highest mountain. Fairy Meadows offers some of the most dramatic views of any campsite in the world.',
+      description: `A lush green meadow at the base of Nanga Parbat, the world's ninth-highest mountain. Fairy Meadows offers some of the most dramatic views of any campsite in the world.`,
       images: [{ url: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800' }],
       location: { region: 'Diamer', address: 'Fairy Meadows, Nanga Parbat Base Camp, Diamer', latitude: 35.3833, longitude: 74.5667 },
       category: 'meadow', bestTimeToVisit: { from: 'May', to: 'September' },
@@ -76,7 +76,7 @@ const seed = async () => {
     },
     {
       name: 'Deosai Plains',
-      description: 'Known as "Land of the Giants," Deosai is one of the highest plateaus in the world. In summer it transforms into a carpet of wildflowers and is home to the endangered Himalayan brown bear.',
+      description: `Known as "Land of the Giants," Deosai is one of the highest plateaus in the world. In summer it transforms into a carpet of wildflowers and is home to the endangered Himalayan brown bear.`,
       images: [{ url: 'https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?w=800' }],
       location: { region: 'Astore', address: 'Deosai National Park, Astore, Gilgit-Baltistan', latitude: 34.9833, longitude: 75.3667 },
       category: 'plateau', bestTimeToVisit: { from: 'July', to: 'August' },
@@ -88,7 +88,7 @@ const seed = async () => {
     },
     {
       name: 'Skardu Valley',
-      description: 'The gateway to K2 and the Karakoram, Skardu is a high-altitude desert surrounded by towering peaks. Home to ancient forts, crystal-clear lakes, and some of the world's most challenging trekking routes.',
+      description: `The gateway to K2 and the Karakoram, Skardu is a high-altitude desert surrounded by towering peaks. Home to ancient forts, crystal-clear lakes, and some of the world's most challenging trekking routes.`  ,
       images: [{ url: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=800' }],
       location: { region: 'Skardu', address: 'Skardu City, Gilgit-Baltistan', latitude: 35.2971, longitude: 75.6333 },
       category: 'valley', bestTimeToVisit: { from: 'April', to: 'October' },
