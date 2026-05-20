@@ -81,7 +81,7 @@ const Navbar = () => {
           </div>
 
           <NavLink to="/places" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Places</NavLink>
-          <NavLink to="/become-host" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Become a Host</NavLink>
+          {/* <NavLink to="/become-host" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Become a Host</NavLink> */}
           <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>About</NavLink>
           <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Contact</NavLink>
         </div>
@@ -157,6 +157,7 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="auth-buttons">
+              <NavLink to="/become-host" className="btn btn-primary btn-sm">Become a Host</NavLink>
               <Link to="/login" className="btn btn-ghost btn-sm">Sign In</Link>
               {/* <Link to="/register" className="btn btn-primary btn-sm">Sign Up</Link> */}
             </div>
@@ -176,7 +177,7 @@ const Navbar = () => {
           <Link to="/stays" className="mobile-link" onClick={() => setMobileOpen(false)}>Stays</Link>
           <Link to="/experiences" className="mobile-link" onClick={() => setMobileOpen(false)}>Experiences</Link>
           <Link to="/places" className="mobile-link" onClick={() => setMobileOpen(false)}>Places to Visit</Link>
-          <Link to="/become-host" className="mobile-link" onClick={() => setMobileOpen(false)}>Become a Host</Link>
+          {/* <Link to="/become-host" className="mobile-link" onClick={() => setMobileOpen(false)}>Become a Host</Link> */}
           <Link to="/about" className="mobile-link" onClick={() => setMobileOpen(false)}>About</Link>
           <Link to="/contact" className="mobile-link" onClick={() => setMobileOpen(false)}>Contact</Link>
           {user ? (
@@ -197,6 +198,7 @@ const Navbar = () => {
             </>
           ) : (
             <div className="mobile-auth">
+               <Link to="/become-host" className="mobile-link" onClick={() => setMobileOpen(false)}>Become a Host</Link>
               <Link to="/login" className="btn btn-ghost" onClick={() => setMobileOpen(false)}>Sign In</Link>
               {/* <Link to="/register" className="btn btn-primary" onClick={() => setMobileOpen(false)}>Sign Up</Link> */}
             </div>
