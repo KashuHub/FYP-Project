@@ -53,11 +53,15 @@ const seed = async () => {
     },
     {
       name: 'Attabad Lake',
+<<<<<<< HEAD
 
       description: 'A stunning turquoise lake created in 2010 by a massive landslide. The lake\'s surreal blue-green color against the surrounding mountains makes it one of Pakistan\'s most photographed spots.',
 
       description: `A stunning turquoise lake created in 2010 by a massive landslide. The lake's surreal blue-green color against the surrounding mountains makes it one of Pakistan's most photographed spots.`,
 
+=======
+      description: 'A stunning turquoise lake created in 2010 by a massive landslide. The lake\'s surreal blue-green color against the surrounding mountains makes it one of Pakistan\'s most photographed spots.',
+>>>>>>> 7aa8475f6167a57faea81eb181996d78dd3316e5
       images: [{ url: 'https://images.unsplash.com/photo-1609766857240-3e6e3c8c3a8e?w=800' }],
       location: { region: 'Hunza', address: 'Attabad, Gojal Valley, Hunza', latitude: 36.4100, longitude: 74.8600 },
       category: 'lake', bestTimeToVisit: { from: 'May', to: 'September' },
@@ -68,11 +72,15 @@ const seed = async () => {
     },
     {
       name: 'Fairy Meadows',
+<<<<<<< HEAD
 
       description: 'A lush green meadow at the base of Nanga Parbat, the world\'s ninth-highest mountain. Fairy Meadows offers some of the most dramatic views of any campsite in the world.',
 
       description: `A lush green meadow at the base of Nanga Parbat, the world's ninth-highest mountain. Fairy Meadows offers some of the most dramatic views of any campsite in the world.`,
 
+=======
+      description: 'A lush green meadow at the base of Nanga Parbat, the world\'s ninth-highest mountain. Fairy Meadows offers some of the most dramatic views of any campsite in the world.',
+>>>>>>> 7aa8475f6167a57faea81eb181996d78dd3316e5
       images: [{ url: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800' }],
       location: { region: 'Diamer', address: 'Fairy Meadows, Nanga Parbat Base Camp, Diamer', latitude: 35.3833, longitude: 74.5667 },
       category: 'meadow', bestTimeToVisit: { from: 'May', to: 'September' },
@@ -96,11 +104,15 @@ const seed = async () => {
     },
     {
       name: 'Skardu Valley',
+<<<<<<< HEAD
 
       description: 'The gateway to K2 and the Karakoram, Skardu is a high-altitude desert surrounded by towering peaks. Home to ancient forts, crystal-clear lakes, and some of the world\'s most challenging trekking routes.',
 
       description: `The gateway to K2 and the Karakoram, Skardu is a high-altitude desert surrounded by towering peaks. Home to ancient forts, crystal-clear lakes, and some of the world's most challenging trekking routes.`  ,
 
+=======
+      description: 'The gateway to K2 and the Karakoram, Skardu is a high-altitude desert surrounded by towering peaks. Home to ancient forts, crystal-clear lakes, and some of the world\'s most challenging trekking routes.',
+>>>>>>> 7aa8475f6167a57faea81eb181996d78dd3316e5
       images: [{ url: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=800' }],
       location: { region: 'Skardu', address: 'Skardu City, Gilgit-Baltistan', latitude: 35.2971, longitude: 75.6333 },
       category: 'valley', bestTimeToVisit: { from: 'April', to: 'October' },
